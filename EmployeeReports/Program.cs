@@ -21,8 +21,24 @@ namespace Employees
 			// Employee list
 			Employee[] emps = { chucky, mary, fran, bob, sally, sam, mike };
 
+            // handlers go here
+            chucky.TooMany += TooManyReports;
+            mary.TooMany += TooManyReports;
+
+            chucky.TooMany += delegate(object sender, ManagerEventArgs manEvent)
+            {
+                Console.WriteLine(manEvent.Message());
+            };
+            mary.TooMany += delegate (object sender, ManagerEventArgs manEvent)
+            {
+                Console.WriteLine(manEvent.Message());
+            };
+
+            chucky.TooMany += (sender, manEvent) => Console.WriteLine(manEvent.Message());
+            mary.TooMany += (sender, manEvent) => Console.WriteLine(manEvent.Message());
+
             // Add reports
-            try
+            // try
             {
                 mary.AddReport(fran);
                 mary.AddReport(mike);
@@ -35,17 +51,17 @@ namespace Employees
                 chucky.AddReport(mike);
                 chucky.AddReport(mary);
             }
-    		catch(Manager.TooManyReportsException e)
-			{
-				Console.WriteLine("*** Error! ***");
-				Console.WriteLine("Source: {0}", e.Source);
-				Console.WriteLine("Method: {0}", e.TargetSite);
-				Console.WriteLine("Message: {0}", e.Message);
-				Console.WriteLine("Custom Data:");
-				foreach (DictionaryEntry de in e.Data)
-					Console.WriteLine("-> {0}: {1}", de.Key, de.Value);
+   // 		catch(Manager.TooManyReportsException e)
+			//{
+			//	Console.WriteLine("*** Error! ***");
+			//	Console.WriteLine("Source: {0}", e.Source);
+			//	Console.WriteLine("Method: {0}", e.TargetSite);
+			//	Console.WriteLine("Message: {0}", e.Message);
+			//	Console.WriteLine("Custom Data:");
+			//	foreach (DictionaryEntry de in e.Data)
+			//		Console.WriteLine("-> {0}: {1}", de.Key, de.Value);
 
-			}
+			//}
 
             Console.WriteLine("\nDisplay Managers\n");
 			mary.DisplayStats();
@@ -64,6 +80,12 @@ namespace Employees
             Console.WriteLine();
 
 			Console.ReadLine();
+        }
+
+        //the required method thingy
+        public static void TooManyReports(object sender, ManagerEventArgs manEvent)
+        {
+            Console.WriteLine(manEvent.Message());
         }
     }
 }

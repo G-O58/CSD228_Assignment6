@@ -28,22 +28,26 @@ namespace Employees
 		public int StockOptions { get; set; }
         #endregion
 
-        #region Exceptions
-        // Exception raised when adding more than MaxReports to a Manager
-        [System.Serializable]
-        public class TooManyReportsException : ApplicationException
-        {
-            // Standard exception constructors
-            public TooManyReportsException() {}
-            public TooManyReportsException(string message) 
-                : base(message) {}
-            public TooManyReportsException(string message, Exception inner) 
-                : base(message, inner) {}
-            protected TooManyReportsException(System.Runtime.Serialization.SerializationInfo info, 
-                                  System.Runtime.Serialization.StreamingContext context) 
-                : base(info, context) {}
-        }
-		#endregion
+        //      #region Exceptions
+        //      // Exception raised when adding more than MaxReports to a Manager
+        //      [System.Serializable]
+        //      public class TooManyReportsException : ApplicationException
+        //      {
+        //          // Standard exception constructors
+        //          public TooManyReportsException() {}
+        //          public TooManyReportsException(string message) 
+        //              : base(message) {}
+        //          public TooManyReportsException(string message, Exception inner) 
+        //              : base(message, inner) {}
+        //          protected TooManyReportsException(System.Runtime.Serialization.SerializationInfo info, 
+        //                                System.Runtime.Serialization.StreamingContext context) 
+        //              : base(info, context) {}
+        //      }
+        //#endregion
+
+        //Generic event thingy
+        public event EventHandler<ManagerEventArgs> TooMany;
+
 
 		#region Class Methods
         // Enumerate reports for Manager
@@ -67,8 +71,8 @@ namespace Employees
             if (sortOrder != null) Array.Sort(_reports, sortOrder);
 
             // Enumerate reports in specified order
-			foreach (Employee emp in this) yield return emp;
-		}
+            foreach (Employee emp in this) yield return emp;
+        }
 
 		// Override GiveBonus to change stock options for Manager
 		public override void GiveBonus(float amount)
@@ -86,6 +90,7 @@ namespace Employees
             // Array full - no empty positions
             if (emptyPos < 0)
             {
+                /*
                 // Raise excepction for too many reports
 				Exception ex = new TooManyReportsException(
                     string.Format("Manager already has {0} reports.", MaxReports));
@@ -101,6 +106,10 @@ namespace Employees
                 // Finally, add report that failed to be added, and throw exception
 				ex.Data.Add("New Report", report.Name);
 				throw ex;
+                */
+
+                //invoke event
+                TooMany.Invoke(this, new ManagerEventArgs(this, report));
             }
 
             // Only add report if not already a report and not same as this
