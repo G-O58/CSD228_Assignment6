@@ -1,0 +1,32 @@
+***** Assignment 4: Employee Reports *****
+
+*** Error! ***
+Source: Employees
+Method: Void AddReport(Employees.Employee)
+Message: Manager already has 5 reports.
+Custom Data:
+-> Manager: Chucky
+-> Reports: Bob Sally Sam Fran Mike 
+-> New Report: Mary
+
+Display Managers
+
+Name: Mary
+ID: 90
+Age: 54
+Pay: $200,000.00
+SSN: 121-12-1211
+Stock Options: 9,500
+Reports: Mike 
+
+Name: Chucky
+ID: 92
+Age: 50
+Pay: $100,000.00
+SSN: 333-23-2322
+Stock Options: 9,000
+Reports: Bob Sally Fran Mike 
+Reports by Name: Bob Fran Mike Sally 
+Reports by Age: 31-Bob 32-Sally 43-Fran 45-Mike 
+Reports by Pay: $15,000.00-Mike $30,000.00-Sally $80,000.00-Fran $120,000.00-Bob 
+
