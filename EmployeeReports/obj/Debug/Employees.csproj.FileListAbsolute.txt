@@ -1,0 +1,6 @@
+C:\Users\greg_\Downloads\CSD228_assignment4_solution\EmployeeReports\bin\Debug\Employees.exe.config
+C:\Users\greg_\Downloads\CSD228_assignment4_solution\EmployeeReports\bin\Debug\Employees.exe
+C:\Users\greg_\Downloads\CSD228_assignment4_solution\EmployeeReports\bin\Debug\Employees.pdb
+C:\Users\greg_\Downloads\CSD228_assignment4_solution\EmployeeReports\obj\Debug\Employees.exe
+C:\Users\greg_\Downloads\CSD228_assignment4_solution\EmployeeReports\obj\Debug\Employees.pdb
+C:\Users\greg_\Downloads\CSD228_assignment4_solution\EmployeeReports\obj\Debug\Employees.csprojResolveAssemblyReference.cache
